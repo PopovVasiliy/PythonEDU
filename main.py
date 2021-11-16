@@ -1,3 +1,4 @@
+from devices.Device import *
 # This is a sample Python script.
 
 # Press Shift+F10 to execute it or replace it with your code.
@@ -8,26 +9,24 @@
 
 
 
+
 # Press the green button in the gutter to run the script.
-# if __name__ == '__main__':
-#     print_hi('PyCharm')
+if __name__ == '__main__':
+    try:
+        deviceRead: Device = open_device('/devices/dev4')
+        for i in range(2):
+            print(read_line(deviceRead))
+    except Exception as exeption:
+        print(f'Error: {Exception}')
 
-# See PyCharm help at https://www.jetbrains.com/help/pycharm/
-import math
+    try:
+        deviceWrite: Device = open_device('/devices/dev1')
+        for i in range(3):
+            quantity = write_line(deviceWrite,'stroka'+str(i))
 
-print('Решаем квадратное уравнение вида ax^2+bx+c = 0')
-a = int(input('Введите a:'))
-b = int(input('Введите b:'))
-c = int(input('Введите c:'))
+        print('Элементов в коллекции после записи:', quantity)
 
-diskriminant = b*b - (4*a*c)
-if diskriminant<0:
-    print('Дискриминант отрицательный, решения нет')
-elif diskriminant==0:
-    result = (math.sqrt(diskriminant)-b)/(2*a)
-    print('Один корень:', result)
-else:
-    result1 = (math.sqrt(diskriminant) - b) / (2 * a)
-    result2 = (-math.sqrt(diskriminant) - b) / (2 * a)
-    print('Один корень:', result1)
-    print('Второй корень:', result2)
+    except Exception as exeption:
+        print(f'Error: {Exception}')
+
+
