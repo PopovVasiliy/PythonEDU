@@ -13,9 +13,13 @@ def __take_line(collection: List[str]) -> str:
 def __put_line(collection: List[str], stroka):
     try:
         if not isinstance(stroka, str):
-            raise ValueError('String is not appended seccefully')
+            raise ValueError('This is not string in input')
             return 0
         collection.append(stroka)
+        getitemlist = collection[len(collection)-1]
+        if stroka != getitemlist:
+            raise ValueError('Item is not appended in list')
+            return 0
         return len(collection)
     except IndexError:
         raise ValueError('String is not appended seccefully')
