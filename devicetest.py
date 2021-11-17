@@ -21,10 +21,10 @@ class DeviceTestCase(unittest.TestCase):
     #     self.assertEqual('line_1', read_line(open_device('/devices/dev4')))
 
     def test_write_line(self):
+        self.assertRaises(ValueError, write_line(open_device('/devices/dev3'), None))
         self.assertRaises(PermissionError, write_line, open_device('/devices/dev1'),'stroka123')
         self.assertRaises(IOError, write_line, write_line(open_device('/devices/dev0'), 'stroka_test1'))
         self.assertRaises(PermissionError, write_line, open_device('/devices/dev2'))
-        self.assertRaises(IOError, write_line(open_device('/devices/dev3'), 'stroka_test3'))
         self.assertRaises(IOError, write_line(open_device('/devices/dev4'), 'stroka_test4'))
 
 

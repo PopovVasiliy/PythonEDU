@@ -14,8 +14,8 @@ def __put_line(collection: List[str], stroka: str) -> int:
     try:
         collection.append(stroka)
         return len(collection)
-    except Exception as exeption:
-        print('Error:', exeption)
+    except IndexError:
+        raise ValueError('String is not appended seccefully')
 
 
 @dataclass
