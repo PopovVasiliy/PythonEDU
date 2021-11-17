@@ -10,8 +10,11 @@ def __take_line(collection: List[str]) -> str:
     except IndexError:
         raise IOError('No more for reading')
 
-def __put_line(collection: List[str], stroka: str) -> int:
+def __put_line(collection: List[str], stroka):
     try:
+        if not isinstance(stroka, str):
+            raise ValueError('String is not appended seccefully')
+            return 0
         collection.append(stroka)
         return len(collection)
     except IndexError:
@@ -68,7 +71,7 @@ def open_device(name: str) -> Device:
     except KeyError:
         raise IOError('Device not found')
 
-def write_line(device: Device, stroka: str) -> int:
+def write_line(device: Device, stroka):
 
     if not is_writable_device(device):
         raise PermissionError('Writing to the devices not allowed.')
