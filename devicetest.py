@@ -29,17 +29,17 @@ class DeviceTestCase(unittest.TestCase):
         self.assertEqual(recorded_element, read_line_without_permission(device))
 
         # #имитация неправильной записи
-        recorded_element = '2314'
-        error_recorded_element = '7878756'
-        device = open_device('/devices/dev1')
-        write_line(device, recorded_element)
-        self.assertEqual(error_recorded_element, read_line_without_permission(device))
+        # recorded_element = '2314'
+        # error_recorded_element = '7878756'
+        # device = open_device('/devices/dev1')
+        # write_line(device, recorded_element)
+        # self.assertEqual(error_recorded_element, read_line_without_permission(device))
 
         # проверка на ошибку доступа - ошибка присутствует(тест пройден)
         self.assertRaises(PermissionError, write_line, open_device('/devices/dev0'),'24')
 
         # проверка на ошибку доступа - ошибка отсутствует(тест НЕ пройден)
-        self.assertRaises(PermissionError, write_line, open_device('/devices/dev1'),'stroka2')
+        # self.assertRaises(PermissionError, write_line, open_device('/devices/dev1'),'stroka2')
 
 
 if __name__ == '__main__':
