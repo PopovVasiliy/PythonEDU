@@ -11,19 +11,8 @@ def __take_line(collection: List[str]) -> str:
         raise IOError('No more for reading')
 
 def __put_line(collection: List[str], stroka):
-    try:
-        if not isinstance(stroka, str):
-            raise ValueError('This is not string in input')
-            return 0
-        collection.append(stroka)
-        getitemlist = collection[len(collection)-1]
-        if stroka != getitemlist:
-            raise ValueError('Item is not appended in list')
-            return 0
-        return getitemlist
-    except IndexError:
-        raise ValueError('String is not appended seccefully')
-
+    collection.insert(0,stroka)
+    return
 
 @dataclass
 class Device:
@@ -55,6 +44,17 @@ def read_line(device: Device) -> str:
     return __take_line(device.data)
 
 
+def read_line_without_permission(device: Device) -> str:
+    """
+    Читает строку текста из устройства
+    :param device: устройство
+    :return: считанная строка
+    :exception IOError если строка не может быть прочитана из устройства
+    :exception PermissionError если устройство не открыто на чтение
+    """
+    return __take_line(device.data)
+
+
 def open_device(name: str) -> Device:
     """
     Открывает указанное устройство.
@@ -80,4 +80,4 @@ def write_line(device: Device, stroka):
     if not is_writable_device(device):
         raise PermissionError('Writing to the devices not allowed.')
     return __put_line(device.data, stroka)
-    # return __put_line(device.data, stroka)
+
